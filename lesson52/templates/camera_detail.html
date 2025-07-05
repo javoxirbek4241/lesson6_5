@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ camera.name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f2f6fa; padding: 30px; }
+        .wrapper { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 1000px; margin: auto; }
+        .image { width: 100%; border-radius: 10px; object-fit: cover; max-height: 400px; }
+        .label { font-weight: 600; color: #555; }
+        .value { margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-6">
+            {% if camera.image %}
+                <img src="{{ camera.image.url }}" alt="{{ camera.name }}" class="image">
+            {% else %}
+                <img src="/media/default/cam.png" alt="Default" class="image">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">{{ camera.name }}</h2>
+            <p><span class="label">Brend:</span> {{ camera.brand }}</p>
+            <p><span class="label">Ruxsat (Resolution):</span> {{ camera.resolution }}</p>
+            <p><span class="label">Ob'ektiv:</span> {{ camera.lens }}</p>
+            <p><span class="label">Tungi ko‘rish:</span> {% if camera.night_vision %}Ha{% else %}Yo‘q{% endif %}</p>
+            <p><span class="label">Ulanish turi:</span> {{ camera.connectivity }}</p>
+            <p><span class="label">Quvvat manbai:</span> {{ camera.power }}</p>
+            <p><span class="label">Qo‘shimcha funksiyalar:</span> {{ camera.features }}</p>
+            <p class="text-success fw-bold"><span class="label">Narxi:</span> {{ camera.price }} so'm</p>
+            <p><span class="label">Yaratilgan:</span> {{ camera.created_at|date:"Y-m-d H:i" }}</p>
+
+            <a href="{% url 'update_camera' camera.id %}" class="btn btn-warning mt-4">← Yangilash</a>
+            <a href="{% url 'delete_camera' camera.id %}" class="btn btn-danger mt-4">← O‘chirish</a>
+            <a href="{% url 'cameras' %}" class="btn btn-secondary mt-4">← Orqaga qaytish</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

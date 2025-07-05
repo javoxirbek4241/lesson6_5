@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Konditsionerni yangilash </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #eef3f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .form-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 600px; }
+        h2 { text-align: center; font-weight: 700; margin-bottom: 30px; color: #222; }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Konditsionerni yangilash Qo‘shish</h2>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3"><label class="form-label">Model</label>
+        <input type="text" name="name" value="{{ conditioners.name }}" class="form-control" required>
+    </div>
+    <div class="mb-3"><label class="form-label">Brend</label>
+        <input type="text" name="brand" value="{{ conditioners.brand }}" class="form-control" required>
+    </div>
+    <div class="mb-3"><label class="form-label">Sovutish quvvati</label>
+        <input type="text" name="cooling_capacity" value="{{ conditioners.cooling_capacity }}" class="form-control">
+    </div>
+    <div class="mb-3"><label class="form-label">Quvvat sarfi</label>
+        <input type="text" name="power_consumption" value="{{ conditioners.power_consumption }}" class="form-control">
+    </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="inverter" id="inverter" {% if conditioners.inverter %}checked{% endif %}>
+        <label class="form-check-label" for="inverter">Inverter</label>
+    </div>
+    <div class="mb-3"><label class="form-label">Xona o‘lchami</label>
+        <input type="text" name="room_size" value="{{ conditioners.room_size }}" class="form-control">
+    </div>
+    <div class="mb-3"><label class="form-label">Shovqin darajasi</label>
+        <input type="text" name="noise_level" value="{{ conditioners.noise_level }}" class="form-control">
+    </div>
+    <div class="mb-3"><label class="form-label">Qo‘shimcha funksiyalar</label>
+        <textarea name="functions" rows="3" class="form-control">{{ conditioners.functions }}</textarea>
+    </div>
+    <div class="mb-3"><label class="form-label">Narxi (UZS)</label>
+        <input type="number" name="price" value="{{ conditioners.price }}" step="0.01" class="form-control" required>
+    </div>
+    <div class="mb-3"><label class="form-label">Rasm</label>
+        <input type="file" name="image" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Saqlash</button>
+</form>
+</div>
+</body>
+</html>
