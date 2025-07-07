@@ -16,16 +16,7 @@
     <h2>Yangi Kamera Qo‘shish</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-3"><label class="form-label">Model</label><input type="text" name="name" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Brend</label><input type="text" name="brand" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Ruxsat (Resolution)</label><input type="text" name="resolution" class="form-control"></div>
-        <div class="mb-3"><label class="form-label">Ob’ektiv (Lens)</label><input type="text" name="lens" class="form-control"></div>
-        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="night_vision" id="night_vision"><label class="form-check-label" for="night_vision">Tungi ko‘rish</label></div>
-        <div class="mb-3"><label class="form-label">Ulanish turi</label><input type="text" name="connectivity" class="form-control"></div>
-        <div class="mb-3"><label class="form-label">Quvvat manbai</label><input type="text" name="power" class="form-control"></div>
-        <div class="mb-3"><label class="form-label">Qo‘shimcha funksiyalar</label><textarea name="features" rows="3" class="form-control"></textarea></div>
-        <div class="mb-3"><label class="form-label">Narxi (UZS)</label><input type="number" name="price" step="0.01" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Rasm</label><input type="file" name="image" class="form-control"></div>
+        {{form.as_p}}
         <button type="submit" class="btn btn-primary w-100">Saqlash</button>
         <a href="{% url 'cameras' %}" class="btn btn-outline-secondary w-100 mt-3">← Orqaga</a>
     </form>
